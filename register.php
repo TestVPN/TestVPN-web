@@ -12,6 +12,7 @@ function print_html_main($fail_reason)
 				<input id="username" name="username" type="text" placeholder="name"/>
 				<input id="password" name="password" type="password" placeholder="password"/>
 				<input id="repeate_password" name="repeate_password" type="password" placeholder="repeate password"/>
+				<input id="beta_key" name="beta_key" type="text" placeholder="BETA_KEY"/>
 				<!-- <input type="text" placeholder="email address"/> -->
 				<button>create</button>
 				<p class="message">Already registered? <a href="login.php">Sign In</a></p>
