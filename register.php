@@ -12,8 +12,8 @@ function print_html_main($fail_reason)
 				<input id="username" name="username" type="text" placeholder="name"/>
 				<input id="password" name="password" type="password" placeholder="password"/>
 				<input id="repeate_password" name="repeate_password" type="password" placeholder="repeate password"/>
+				<input id="email" name="email" type="text" placeholder="email address"/>
 				<input id="beta_key" name="beta_key" type="text" placeholder="BETA_KEY"/>
-				<!-- <input type="text" placeholder="email address"/> -->
 				<button>create</button>
 				<p class="message">Already registered? <a href="login.php">Sign In</a></p>
 			</form>
@@ -43,19 +43,21 @@ function print_html_main($fail_reason)
 }
 
 
-if (!empty($_POST['username']) and !empty($_POST['password']) and !empty($_POST['repeate_password']))
+if (!empty($_POST['username']) and !empty($_POST['password']) and !empty($_POST['repeate_password']) and !empty($_POST['email']))
 {
 	$username = isset($_POST['username'])? $_POST['username'] : '';
 	$password = isset($_POST['password'])? $_POST['password'] : '';
 	$repeate_password = isset($_POST['repeate_password'])? $_POST['repeate_password'] : '';
+	$email = isset($_POST['email'])? $_POST['email'] : '';
 	$beta_key = isset($_POST['beta_key'])? $_POST['beta_key'] : '';
 
 	$beta_key = (string)$beta_key;
 	$username = (string)$username;
 	$password = (string)$password;
 	$repeate_password = (string)$repeate_password;
+	$email = (string)$email;
 	
-	if ($beta_key !== BETA_KEY)
+	if ($beta_key !== SECRET_BETA_KEY)
 	{
 		print_html_main("Wrong beta key.");
 		fok();
@@ -101,7 +103,7 @@ if (!empty($_POST['username']) and !empty($_POST['password']) and !empty($_POST[
 		fok();
 	}
 	*/
-	if (strlen($username) > 32)
+	if (strlen($username) > 16) // filnames depending on username shouldnt be too long
     {
         print_html_main("Username too long.");
         fok();
@@ -139,13 +141,14 @@ if (!empty($_POST['username']) and !empty($_POST['password']) and !empty($_POST[
         //=================================
     	$db = new PDO(DATABASE_PATH);
     	$db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
-    	$stmt = $db->prepare('INSERT INTO Accounts (Username, Password, IP, RegisterDate) VALUES (?, ?, ?, ?)');
-	$stmt->execute(array($username, $password, $_SERVER['REMOTE_ADDR'], $current_date));
+	$stmt = $db->prepare('INSERT INTO Accounts (Username, Password, Mail, IP, RegisterDate) VALUES (?, ?, ?, ?, ?)');
+	$stmt->execute(array($username, $password, $email, $_SERVER['REMOTE_ADDR'], $current_date));
 	//print_html_main("sucessfully created an account");
 
 
-        $_SESSION['Username'] = $username;
-        $_SESSION['IsLogged'] = "online";
+	$_SESSION['Username'] = $username;
+	$_SESSION['Mail'] = $email;
+	$_SESSION['IsLogged'] = "online";
 ?>
 	<script type="text/javascript">
 	window.setTimeout(function()
@@ -163,7 +166,7 @@ if (!empty($_POST['username']) and !empty($_POST['password']) and !empty($_POST[
 	</div>
 <?php
 }
-else if (!empty($_POST['username']) or !empty($_POST['password']))
+else if (!empty($_POST['username']) or !empty($_POST['password']) or !empty($_POST['repeate_password']) or !empty($_POST['mail']))
 {
 	print_html_main("All fields are required");
 }

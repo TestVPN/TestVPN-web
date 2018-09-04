@@ -39,7 +39,9 @@ if (!empty($_POST['username']) and !empty($_POST['password']))
 	if ($rows)
 	{
         $name = $rows[0]['Username'];
+        $email = $rows[0]['Mail'];
 	$_SESSION['Username'] = $name;
+	$_SESSION['Mail'] = $email;
 	$_SESSION['IsLogged'] = "online";
 
 	$current_date = date("Y-m-d H:i:s");

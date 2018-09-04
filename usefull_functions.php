@@ -92,6 +92,5 @@ function CheckAccountState($username)
 		fok();
 	}
 }
-
 ?>
 
