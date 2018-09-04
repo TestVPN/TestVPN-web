@@ -50,11 +50,12 @@ date_default_timezone_set('Europe/Berlin');
 ********************/
 
 //depending on server
-const DATABASE_PATH_RAW = "/var/www/TestVPN/users.db";
+const TEST_VPN_DIR = "/var/www/TestVPN-scripts/";
+const DATABASE_PATH_RAW = TEST_VPN_DIR . "users.db";
 const DATABASE_PATH = "sqlite:" . DATABASE_PATH_RAW;
 const ABSOLUTE_DATABASE_PATH = DATABASE_PATH; //handle all absolut for simplicity
 
-const CERT_PATH = "/var/www/TestVPN/certs/";
+const CERT_PATH = TEST_VPN_DIR . "certs/";
 
 //configs
 const SAMPLE_CONFIG = 10;

@@ -6,6 +6,13 @@ HtmlHeader("register");
 function print_html_main($fail_reason)
 {
 ?>
+	<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+	<script type="text/javascript">
+		var onloadCallback = function()
+		{
+			grecaptcha.render('html_element', {'sitekey' : '6LdYUG4UAAAAAMZvmLBmV_4YBg8tQer3x46tc5h7'});
+		};
+	</script>
 	<div class="login-page">
 		<div class="form">
 			<form method="post" action="register.php" class="login-form">
@@ -14,28 +21,15 @@ function print_html_main($fail_reason)
 				<input id="repeate_password" name="repeate_password" type="password" placeholder="repeate password"/>
 				<input id="email" name="email" type="text" placeholder="email address"/>
 				<input id="beta_key" name="beta_key" type="text" placeholder="BETA_KEY"/>
+				<div id="recaptcha">
+					<div class="g-recaptcha" data-sitekey="6LdYUG4UAAAAAMZvmLBmV_4YBg8tQer3x46tc5h7"></div>
+				</div>
 				<button>create</button>
 				<p class="message">Already registered? <a href="login.php">Sign In</a></p>
 			</form>
 		</div>
 	</div>
 <?php
-	/*
-	echo
-	"
-			<h2> TestVPN Register</h2>
-        		<form method=\"post\" action=\"register.php\">
-				<div id=\"html_element\"></div>
-                		<input id=\"username\" type=\"text\" name=\"username\"  placeholder=\"username\"></br>
-                		<input id=\"password\" type=\"password\" name=\"password\" placeholder=\"password\"></br>
-				</br>
-                		<input type=\"submit\" value=\"Register\" >
-        		</form>
-			<form>
-				<input type=\"button\" value=\"Got an account -> Login\" onclick=\"window.location.href='login.php'\" />
-			</form>
-	";
-	*/
 	if ($fail_reason != "none")
 	{
 		echo "<font color=\"red\">$fail_reason</font>";
@@ -68,7 +62,7 @@ if (!empty($_POST['username']) and !empty($_POST['password']) and !empty($_POST[
 		print_html_main("Passwords have to be the same");
 		fok();
 	}
-	/*
+
 	if (empty($_POST["g-recaptcha-response"]))
 	{
 		print_html_main("make sure to click the captcha");
@@ -78,7 +72,7 @@ if (!empty($_POST['username']) and !empty($_POST['password']) and !empty($_POST[
 	$response = $_POST["g-recaptcha-response"];
 	$url = 'https://www.google.com/recaptcha/api/siteverify';
 	$data = array(
-		'secret' => 'SECRET',
+		'secret' => SECRET_CAPTCHA_KEY,
 		'response' => $_POST["g-recaptcha-response"]
 	);
 	$options = array(
@@ -92,7 +86,7 @@ if (!empty($_POST['username']) and !empty($_POST['password']) and !empty($_POST[
 	$verify = file_get_contents($url, false, $context);
 	$captcha_success=json_decode($verify);
 	if ($captcha_success->success==false) {
-		print_html_main("Detected bot");
+		print_html_main("Seems like you are not a human.");
 		fok();
 	} else if ($captcha_success->success==true) {
 		//echo "<p>proofed human!</p>";
@@ -102,7 +96,7 @@ if (!empty($_POST['username']) and !empty($_POST['password']) and !empty($_POST[
 		print_html_main("Something went horrible wrong. Please contact an admin.");
 		fok();
 	}
-	*/
+
 	if (strlen($username) > 16) // filnames depending on username shouldnt be too long
     {
         print_html_main("Username too long.");

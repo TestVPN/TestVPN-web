@@ -88,8 +88,9 @@ if (!empty($_GET['action']))
 	}
 
 	$cert_name = $_SESSION['Username'] . "-" . $total_vpns;
-	$out = shell_exec("sudo /var/www/TestVPN/adduser-vpn.sh $cert_name");
-	//echo "exec:</br> $out";
+	$shell_str = "sudo " . TEST_VPN_DIR . "adduser-vpn.sh $cert_name";
+	$out = shell_exec($shell_str);
+	//echo "exec:</br>$shell_str</br>out:</br> $out";
 
 	$current_date = date("Y-m-d H:i:s");
 	$stmt = $db->prepare('UPDATE Accounts SET NumVPNS = ?, LastVPN = ? WHERE Username = ? ');
