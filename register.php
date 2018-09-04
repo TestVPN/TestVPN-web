@@ -48,12 +48,19 @@ if (!empty($_POST['username']) and !empty($_POST['password']) and !empty($_POST[
 	$username = isset($_POST['username'])? $_POST['username'] : '';
 	$password = isset($_POST['password'])? $_POST['password'] : '';
 	$repeate_password = isset($_POST['repeate_password'])? $_POST['repeate_password'] : '';
+	$beta_key = isset($_POST['beta_key'])? $_POST['beta_key'] : '';
 
-
+	$beta_key = (string)$beta_key;
 	$username = (string)$username;
 	$password = (string)$password;
 	$repeate_password = (string)$repeate_password;
 	
+	if ($beta_key !== BETA_KEY)
+	{
+		print_html_main("Wrong beta key.");
+		fok();
+	}
+
 	if ($repeate_password != $password)
 	{
 		print_html_main("Passwords have to be the same");
