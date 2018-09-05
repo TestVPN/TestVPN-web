@@ -156,7 +156,7 @@ for ($i=0;$i<10;$i++)
 		echo "
 		</div>
 		<div class=\"btn-right\">
-			<button>rename</button>
+			<button onclick=\"window.location.href='rename.php?id=$i'\">rename</button>
 		</div>
 		";
 	}
