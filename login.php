@@ -40,6 +40,11 @@ if (!empty($_POST['username']) and !empty($_POST['password']))
 	{
         $name = $rows[0]['Username'];
         $email = $rows[0]['Mail'];
+	for ($i=0;$i<15;$i++)
+	{
+		$aConfig[$i] = $rows[0]['Config' . $i];
+	}
+	$_SESSION['Config'] = $aConfig;
 	$_SESSION['Username'] = $name;
 	$_SESSION['Mail'] = $email;
 	$_SESSION['IsLogged'] = "online";

@@ -131,15 +131,34 @@ else
 ?>
 	<div class="certs-dl">
 <?php
+$aConfig = $_SESSION['Config'];
 for ($i=0;$i<10;$i++)
 {
 	$cert_file=CERT_PATH . $_SESSION['Username'] . "-" . $i . ".ovpn";
 	if (file_exists($cert_file))
 	{
-	echo "
-		<!-- <a href=\"download.php?id=$i\">download $username-$i.ovpn<br/></a> -->
-		<button class=\"certs-btn\" onclick=\"window.location.href='download.php?id=$i'\"> download $username-$i.ovpn </button>
-	";
+		$cfg_name = $aConfig[$i];
+		echo "
+		<div class=\"btn-left\">
+		";
+		if ($cfg_name === "")
+		{
+		echo "
+			<button id=\"btn-fix\" class=\"certs-btn\" onclick=\"window.location.href='download.php?id=$i'\"> download $username-$i.ovpn </button>
+		";
+		}
+		else
+		{
+		echo "
+			<button id=\"btn-fix\" class=\"certs-btn\" onclick=\"window.location.href='download.php?id=$i'\"> download $cfg_name.ovpn </button>
+		";
+		}
+		echo "
+		</div>
+		<div class=\"btn-right\">
+			<button>rename</button>
+		</div>
+		";
 	}
 	else
 	{

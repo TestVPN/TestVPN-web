@@ -26,13 +26,21 @@ function SendMail($mailAddr, $username)
 
 		//Attachments
 		$certs = 0;
+		$aConfig = $_SESSION['Config'];
 		for ($i=0;$i<10;$i++)
 		{
 			$cert_name=$username . "-" . $i . ".ovpn";
 			$cert_path=CERT_PATH . $cert_name;
 			if (file_exists($cert_path))
 			{
+				if ($aConfig[$i] === "")
+				{
 				$mail->addAttachment($cert_path, $cert_name);
+				}
+				else
+				{
+				$mail->addAttachment($cert_path, $aConfig[$i] . '.ovpn');
+				}
 				$certs++;
 			}
 		}

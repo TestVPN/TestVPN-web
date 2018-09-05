@@ -1,5 +1,17 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:300);
 
+.btn-left {
+  float: left;
+}
+
+.btn-right {
+  float: right;
+}
+
+#btn-fix {
+  width: 90%;
+}
+
 button {
   margin: 10px;
 }

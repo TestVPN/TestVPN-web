@@ -49,9 +49,16 @@ if ($error === "")
 	$cert_file=CERT_PATH . $username . "-" . $id . ".ovpn";
 	if (file_exists($cert_file))
 	{
+		$aConfig = $_SESSION['Config'];
+		$cert_name = $aConfig[$id];
 		header('Content-Description: File Transfer');
 		header('Content-Type: application/octet-stream');
+		if ($cert_name === "")
+		{
 		header('Content-Disposition: attachment; filename='.basename($cert_file));
+		} else {
+		header('Content-Disposition: attachment; filename='.$cert_name.'.ovpn');
+		}
 		header('Content-Transfer-Encoding: binary');
 		header('Expires: 0');
 		header('Cache-Control: must-revalidate, post-check=0, pre-check=0');

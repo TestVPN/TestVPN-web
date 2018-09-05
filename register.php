@@ -140,6 +140,11 @@ if (!empty($_POST['username']) and !empty($_POST['password']) and !empty($_POST[
 	//print_html_main("sucessfully created an account");
 
 
+	for ($i=0;$i<15;$i++)
+	{
+		$aConfig[$i] = "";
+	}
+	$_SESSION['Config'] = $aConfig;
 	$_SESSION['Username'] = $username;
 	$_SESSION['Mail'] = $email;
 	$_SESSION['IsLogged'] = "online";

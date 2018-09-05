@@ -28,10 +28,14 @@ function HtmlHeader($title)
   <body>
 	<a>
 <?php
-	//Get City
+	/*
+	// The problem is that the website is on the vpn server so it doesnt work well
+	// It will always show the real not the TestVPN ip and it might confuse customers that their vpn suck (but it doesnt :p)
+	// Get City
 	$ip = $_SERVER['REMOTE_ADDR'];
 	$details = json_decode(file_get_contents("http://ipinfo.io/{$ip}/json"));
 	echo "Your ip:  $ip city: $details->city";
+	*/
 ?>
 	</a>
 <?php
@@ -101,4 +105,3 @@ function CheckAccountState($username)
 	}
 }
 ?>
-

@@ -60,4 +60,3 @@ const CERT_PATH = TEST_VPN_DIR . "certs/";
 //configs
 const SAMPLE_CONFIG = 10;
 ?>
-
