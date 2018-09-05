@@ -58,13 +58,23 @@ if (!empty($_POST['name']))
 {
 	$name = isset($_POST['name'])? $_POST['name'] : '';
 	$name = (string)$name;
+	$error = "";
+	if (strlen($name) > 20)
+	{
+		$error = "Maximum name length is 20 characters.";
+	}
 	if (!preg_match('/^[a-z0-9]+$/i', $name))
+	{
+		$errror = "Only numbers and letters allowed.";
+	}
+
+	if ($error !== "")
 	{
 ?>
 	<div class="login-page">
 		<div class="form">
 			<form action="rename.php?id=<?php echo $id; ?>" class="login-form" method="post">
-				<a style="color:red">Only numbers and letters allowed.</br></a>
+				<a style="color:red"><?php echo $error; ?></br></a>
 				<button type="submit">okay</button>
 			</form>
 		</div>
@@ -72,6 +82,7 @@ if (!empty($_POST['name']))
 <?php
 		fok();
 	}
+
 
 	$db = new PDO(DATABASE_PATH);
 	$db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
