@@ -26,6 +26,14 @@ function HtmlHeader($title)
 	<script src="main.js"></script>
  </head>
   <body>
+	<a>
+<?php
+	//Get City
+	$ip = $_SERVER['REMOTE_ADDR'];
+	$details = json_decode(file_get_contents("http://ipinfo.io/{$ip}/json"));
+	echo "Your ip:  $ip city: $details->city";
+?>
+	</a>
 <?php
 }
 
