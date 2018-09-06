@@ -59,5 +59,5 @@ const CERT_PATH = TEST_VPN_DIR . "certs/";
 const DOMAIN_NAME = "TestVPN.tk";
 
 //configs
-const SAMPLE_CONFIG = 10;
+const IS_ELASTIC = true;
 ?>

@@ -9,17 +9,27 @@ require_once(__DIR__ . "/other/PHPMailer/SMTP.php");
 function SetServerSettings($mail)
 {
 	//Server settings
-	$mail->SMTPDebug = 0; // 2=Enable verbose debug output
-	$mail->isSMTP();
-	//$mail->Host = 'smtp.gmail.com';
-	$mail->Host = "smtp.elasticemail.com";  //elastice
-	$mail->SMTPAuth = true;
-	$mail->Username = 'info.testvpn@gmail.com';
-	$mail->Password = SECRET_MAIL_PASS;
-	//$mail->SMTPSecure = 'ssl'; // google ssl
-	//$mail->Port = 465; // google ssl
-	$mail->Port = 2525; // elastic
-
+	if (IS_ELASTIC)
+	{
+		$mail->SMTPDebug = 0; // 2=Enable verbose debug output
+		$mail->isSMTP();
+		$mail->Host = "smtp.elasticemail.com";  //elastice
+		$mail->SMTPAuth = true;
+		$mail->Username = 'info.testvpn@gmail.com';
+		$mail->Password = SECRET_MAIL_PASS;
+		$mail->Port = 2525; // elastic
+	}
+	else
+	{
+		$mail->SMTPDebug = 0; // 2=Enable verbose debug output
+		$mail->isSMTP();
+		$mail->Host = 'smtp.gmail.com';
+		$mail->SMTPAuth = true;
+		$mail->Username = 'info.testvpn@gmail.com';
+		$mail->Password = SECRET_MAIL_PASS;
+		$mail->SMTPSecure = 'ssl'; // google ssl
+		$mail->Port = 465; // google ssl
+	}
 	return $mail;
 }
 
