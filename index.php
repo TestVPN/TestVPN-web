@@ -40,7 +40,7 @@ if (!empty($_GET['action']))
 	$action = (string)$action;
 	if ($action === "mail")
 	{
-		$mail_status = SendMail($_SESSION['Mail'], $_SESSION['Username']) . "</br>";
+		$mail_status = SendMailConfig($_SESSION['Mail'], $_SESSION['Username']) . "</br>";
 ?>
 	<div class="login-page">
 		<div class="form">

@@ -56,6 +56,7 @@ const DATABASE_PATH = "sqlite:" . DATABASE_PATH_RAW;
 const ABSOLUTE_DATABASE_PATH = DATABASE_PATH; //handle all absolut for simplicity
 
 const CERT_PATH = TEST_VPN_DIR . "certs/";
+const DOMAIN_NAME = "TestVPN.tk";
 
 //configs
 const SAMPLE_CONFIG = 10;

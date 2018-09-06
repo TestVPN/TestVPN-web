@@ -6,19 +6,76 @@ require_once(__DIR__ . "/other/PHPMailer/Exception.php");
 require_once(__DIR__ . "/other/PHPMailer/PHPMailer.php");
 require_once(__DIR__ . "/other/PHPMailer/SMTP.php");
 
-function SendMail($mailAddr, $username)
+function SetServerSettings($mail)
+{
+	//Server settings
+	$mail->SMTPDebug = 0; // 2=Enable verbose debug output
+	$mail->isSMTP();
+	//$mail->Host = 'smtp.gmail.com';
+	$mail->Host = "smtp.elasticemail.com";  //elastice
+	$mail->SMTPAuth = true;
+	$mail->Username = 'info.testvpn@gmail.com';
+	$mail->Password = SECRET_MAIL_PASS;
+	//$mail->SMTPSecure = 'ssl'; // google ssl
+	//$mail->Port = 465; // google ssl
+	$mail->Port = 2525; // elastic
+
+	return $mail;
+}
+
+function SendMail($mailAddr, $subject, $body, $altbody)
 {
 	$mail = new PHPMailer(true);
 	try {
-		//Server settings
-		$mail->SMTPDebug = 0; // 2=Enable verbose debug output
-		$mail->isSMTP();
-		$mail->Host = 'smtp.gmail.com';
-		$mail->SMTPAuth = true;
-		$mail->Username = 'info.testvpn@gmail.com';
-		$mail->Password = SECRET_MAIL_PASS;
-		$mail->SMTPSecure = 'ssl';
-		$mail->Port = 465;
+		$mail = SetServerSettings($mail);
+		//Recipients
+		$mail->setFrom('info.testvpn@gmail.com', 'Test VPN');
+		$mail->addAddress($mailAddr);
+
+		//Content
+		$mail->isHTML(true);
+		$mail->Subject = "$subject";
+		$mail->Body    = "$body";
+		$mail->AltBody = "$altbody";
+		$mail->send();
+		return 'Message has been sent';
+	} catch (Exception $e) {
+		return 'Message could not be sent. Mailer Error: ' . (string)$mail->ErrorInfo;
+	}
+}
+
+function SendMailPasswd($mailAddr, $token)
+{
+		//Content
+		$reset_url = "https://" . DOMAIN_NAME . "/new_password.php?token=$token";
+		$Subject = "Free TestVPN";
+		$Body    = "
+Hello TestVPN User!</br>\n
+</br>\n
+Someone requested a password reset on your mail.</br>\n
+If this was not you ignore this mail.</br>\n
+</br>\n
+If you want to change your password click <a href=\"$reset_url\">here</a>.
+		";
+
+		$AltBody = "
+Hello TestVPN User!
+
+Someone requested a password reset on your mail.
+If this was not you ignore this mail.
+
+If you want to change your password go to this url:
+$reset_url
+		";
+	return SendMail($mailAddr, $Subject, $Body, $AltBody);
+}
+
+
+function SendMailConfig($mailAddr, $username)
+{
+	$mail = new PHPMailer(true);
+	try {
+		$mail = SetServerSettings($mail);
 
 		//Recipients
 		$mail->setFrom('info.testvpn@gmail.com', 'Test VPN');

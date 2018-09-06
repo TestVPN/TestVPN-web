@@ -120,12 +120,23 @@ if (!empty($_POST['username']) and !empty($_POST['password']) and !empty($_POST[
 	$db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
 	$stmt = $db->prepare('SELECT * FROM Accounts WHERE Username = ?');
 	$stmt->execute(array($username));
-	$db = null;
 	$rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	//$db = null;
+	$stmt = null;
 
 	if ($rows || $username == "admin") //add blocked users here
 	{
 		print_html_main("Username already exsits");
+		fok();
+	}
+	$stmt = $db->prepare('SELECT * FROM Accounts WHERE Mail = ?');
+	$stmt->execute(array($email));
+	$db = null;
+	$rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+	if ($rows)
+	{
+		print_html_main("This e-mail is already used.");
 		fok();
 	}
         $current_date = date("Y-m-d H:i:s");

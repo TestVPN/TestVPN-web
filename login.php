@@ -13,6 +13,14 @@ function print_html_main($fail_reason)
 				<input id="password" name="password" type="password" placeholder="password"/>
 				<button type="submit">login</button>
 				<p class="message">Not registered? <a href="register.php">Create an account</a></p>
+<?php
+	if ($fail_reason != "none")
+	{
+?>
+				<p class="message">Forgot password? <a href="reset_password.php">reset</a></p>
+<?php
+	}
+?>
 			</form>
 		</div>
 	</div>
