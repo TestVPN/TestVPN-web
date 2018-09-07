@@ -114,9 +114,22 @@ function SendMailConfig($mailAddr, $username)
 
 		//Content
 		$mail->isHTML(true);
-		$mail->Subject = "Free TestVPN";
-		$mail->Body    = "Hello <b>User!</b></br>You have $certs certs";
-		$mail->AltBody = "Hello User! (get html u nobo)";
+		$mail->Subject = "Free TestVPN configs";
+		$mail->Body    = "
+<html>
+	<head>
+	</head>
+	<body>
+Hello <b>User!</b></br>\n
+</br>\n
+You have $certs config files.</br>\n
+Use one for each device you want to connect to the VPN.</br>\n
+</br>\n
+Download the <a href=\"https://openvpn.net/index.php/open-source/downloads.html\">OpenVPN client</a> for your operating system and load the configs.</br>\n
+	</body>
+</html>
+";
+		$mail->AltBody = "Hello! You have $certs!";
 
 		$mail->send();
 		return 'Message has been sent';
