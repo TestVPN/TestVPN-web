@@ -139,7 +139,9 @@ for ($i=0;$i<10;$i++)
 	{
 		$cfg_name = $aConfig[$i];
 		echo "
+		<!--
 		<div class=\"btn-left\">
+		-->
 		";
 		if ($cfg_name === "")
 		{
@@ -153,12 +155,14 @@ for ($i=0;$i<10;$i++)
 			<button id=\"btn-fix\" class=\"certs-btn\" onclick=\"window.location.href='download.php?id=$i'\"> download $cfg_name.ovpn </button>
 		";
 		}
+		//<button class=\"certs-btn\" onclick=\"window.location.href='rename.php?id=$i'\">rename</button>
 		echo "
+		<!--
 		</div>
 		<div class=\"btn-right\">
-			<!-- <button class=\"certs-btn\" onclick=\"window.location.href='rename.php?id=$i'\">rename</button> -->
 			<button onclick=\"window.location.href='rename.php?id=$i'\">rename</button>
 		</div>
+		-->
 		";
 	}
 	else
