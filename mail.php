@@ -11,7 +11,7 @@ function SetServerSettings($mail, $IsElastic = IS_ELASTIC)
 	//Server settings
 	if ($IsElastic)
 	{
-		$mail->SMTPDebug = 2; // 2=Enable verbose debug output
+		$mail->SMTPDebug = 0; // 2=Enable verbose debug output
 		$mail->isSMTP();
 		$mail->Host = "smtp.elasticemail.com";  //elastice
 		$mail->SMTPAuth = true;
@@ -21,7 +21,7 @@ function SetServerSettings($mail, $IsElastic = IS_ELASTIC)
 	}
 	else
 	{
-		$mail->SMTPDebug = 2; // 2=Enable verbose debug output
+		$mail->SMTPDebug = 0; // 2=Enable verbose debug output
 		$mail->isSMTP();
 		$mail->Host = 'smtp.gmail.com';
 		$mail->SMTPAuth = true;
