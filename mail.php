@@ -125,7 +125,14 @@ Hello <b>User!</b></br>\n
 You have $certs config files.</br>\n
 Use one for each device you want to connect to the VPN.</br>\n
 </br>\n
-Download the <a href=\"https://openvpn.net/index.php/open-source/downloads.html\">OpenVPN client</a> for your operating system and load the configs.</br>\n
+Download the <a href=\"https://openvpn.net/index.php/open-source/downloads.html\">OpenVPN client</a> for windows</br>\n
+On macOS download <a href=\"https://tunnelblick.net/index.html\">Tunnelblick</a>.</br>\n
+For android and iOS your can find a OpenVPN app in google play and app store.</br>\n
+</br>\n
+</br>\n
+If you need help there are installation guides on youtube for <a href=\"https://www.youtube.com/watch?v=PrCsNQ_gKwM\">iOS</a>,
+<a href=\"https://www.youtube.com/watch?v=9zqbkJQWu28\">macOS</a>,
+<a href=\"https://www.youtube.com/watch?v=lr_0ajj4uXQ\">windows</a>
 	</body>
 </html>
 ";
