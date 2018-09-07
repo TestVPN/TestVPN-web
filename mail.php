@@ -6,22 +6,22 @@ require_once(__DIR__ . "/other/PHPMailer/Exception.php");
 require_once(__DIR__ . "/other/PHPMailer/PHPMailer.php");
 require_once(__DIR__ . "/other/PHPMailer/SMTP.php");
 
-function SetServerSettings($mail)
+function SetServerSettings($mail, $IsElastic = IS_ELASTIC)
 {
 	//Server settings
-	if (IS_ELASTIC)
+	if ($IsElastic)
 	{
-		$mail->SMTPDebug = 0; // 2=Enable verbose debug output
+		$mail->SMTPDebug = 2; // 2=Enable verbose debug output
 		$mail->isSMTP();
 		$mail->Host = "smtp.elasticemail.com";  //elastice
 		$mail->SMTPAuth = true;
 		$mail->Username = 'info.testvpn@gmail.com';
-		$mail->Password = SECRET_MAIL_PASS;
+		$mail->Password = SECRET_MAIL_PASS_ELASTIC;
 		$mail->Port = 2525; // elastic
 	}
 	else
 	{
-		$mail->SMTPDebug = 0; // 2=Enable verbose debug output
+		$mail->SMTPDebug = 2; // 2=Enable verbose debug output
 		$mail->isSMTP();
 		$mail->Host = 'smtp.gmail.com';
 		$mail->SMTPAuth = true;
@@ -85,7 +85,7 @@ function SendMailConfig($mailAddr, $username)
 {
 	$mail = new PHPMailer(true);
 	try {
-		$mail = SetServerSettings($mail);
+		$mail = SetServerSettings($mail, false); // elastic mails with attachement get deleted
 
 		//Recipients
 		$mail->setFrom('info.testvpn@gmail.com', 'Test VPN');
