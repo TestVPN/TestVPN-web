@@ -155,7 +155,10 @@ for ($i=0;$i<10;$i++)
 			<button id=\"btn-fix\" class=\"certs-btn\" onclick=\"window.location.href='download.php?id=$i'\"> download $cfg_name.ovpn </button>
 		";
 		}
-		//<button class=\"certs-btn\" onclick=\"window.location.href='rename.php?id=$i'\">rename</button>
+		if (IS_RENAME)
+		{
+		echo "<button class=\"certs-btn\" onclick=\"window.location.href='rename.php?id=$i'\">rename</button>";
+		}
 		echo "
 		<!--
 		</div>
