@@ -3,9 +3,11 @@ The website for my test version of my vpn service.
 
 # Setup
 
-Follow the setup in the scripts repo https://github.com/TestVPN/TestVPN-scripts
+## Scripts
 
-and then:
+Follow the setup in the scripts repo first https://github.com/TestVPN/TestVPN-scripts
+
+## Secrets
 
 create a ``secrets.php`` file in the root of the repository.
 
@@ -31,3 +33,21 @@ const SECRET_MAIL_PASS_ELASTIC = "UPDATE_ME";
 const SECRET_CAPTCHA_KEY = 'UPDATE_ME';
 ?>
 ```
+
+## Database
+
+give apache permission to read and write the database file into the scripts dir
+
+```
+cd /var/www/TestVPN-scripts
+chown -R www-data:www-data .
+```
+
+execute users_table.php from the web or from commandline to create the table.
+
+http://localhost/TestVPN-web/users_table.php
+
+```
+php users_table.php
+```
+

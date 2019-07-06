@@ -18,7 +18,7 @@ function CreateTableUsers()
    }
 
 	$sql =<<<EOF
-		CREATE TABLE Accounts
+		CREATE TABLE IF NOT EXISTS Accounts
 		(ID				INTEGER			PRIMARY KEY		AUTOINCREMENT,
 		Username			TEXT			NOT NULL,
 		Password			TEXT			NOT NULL,
