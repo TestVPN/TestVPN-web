@@ -61,4 +61,5 @@ const DOMAIN_NAME = "TestVPN.tk";
 //configs
 const IS_ELASTIC = true;
 const IS_RENAME = true;
+const MAIL_ADDR = "info.testvpn@gmail.com";
 ?>

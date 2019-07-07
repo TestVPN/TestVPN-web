@@ -1,5 +1,6 @@
 <?php
 require_once(__DIR__ . "/secrets.php");
+require_once(__DIR__ . "/global.php");
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 require_once(__DIR__ . "/other/PHPMailer/Exception.php");
@@ -15,7 +16,7 @@ function SetServerSettings($mail, $IsElastic = IS_ELASTIC)
 		$mail->isSMTP();
 		$mail->Host = "smtp.elasticemail.com";  //elastice
 		$mail->SMTPAuth = true;
-		$mail->Username = 'info.testvpn@gmail.com';
+		$mail->Username = MAIL_ADDR;
 		$mail->Password = SECRET_MAIL_PASS_ELASTIC;
 		$mail->Port = 2525; // elastic
 	}
@@ -25,7 +26,7 @@ function SetServerSettings($mail, $IsElastic = IS_ELASTIC)
 		$mail->isSMTP();
 		$mail->Host = 'smtp.gmail.com';
 		$mail->SMTPAuth = true;
-		$mail->Username = 'info.testvpn@gmail.com';
+		$mail->Username = MAIL_ADDR;
 		$mail->Password = SECRET_MAIL_PASS;
 		$mail->SMTPSecure = 'ssl'; // google ssl
 		$mail->Port = 465; // google ssl
@@ -39,7 +40,7 @@ function SendMail($mailAddr, $subject, $body, $altbody)
 	try {
 		$mail = SetServerSettings($mail);
 		//Recipients
-		$mail->setFrom('info.testvpn@gmail.com', 'Test VPN');
+		$mail->setFrom(MAIL_ADDR, 'Test VPN');
 		$mail->addAddress($mailAddr);
 
 		//Content
@@ -88,7 +89,7 @@ function SendMailConfig($mailAddr, $username)
 		$mail = SetServerSettings($mail, false); // elastic mails with attachement get deleted
 
 		//Recipients
-		$mail->setFrom('info.testvpn@gmail.com', 'Test VPN');
+		$mail->setFrom(MAIL_ADDR, 'Test VPN');
 		$mail->addAddress($mailAddr);
 
 		//Attachments
