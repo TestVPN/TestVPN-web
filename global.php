@@ -60,5 +60,5 @@ const DOMAIN_NAME = "TestVPN.tk";
 
 //configs
 const IS_ELASTIC = true;
-const IS_RENAME = false;
+const IS_RENAME = true;
 ?>

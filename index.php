@@ -138,35 +138,24 @@ for ($i=0;$i<10;$i++)
 	if (file_exists($cert_file))
 	{
 		$cfg_name = $aConfig[$i];
-		echo "
-		<!--
-		<div class=\"btn-left\">
-		-->
-		";
 		if ($cfg_name === "")
 		{
 		echo "
-			<button id=\"btn-fix\" class=\"certs-btn\" onclick=\"window.location.href='download.php?id=$i'\"> download $username-$i.ovpn </button>
+			<button id=\"btn-fix\" onclick=\"window.location.href='download.php?id=$i'\"> download $username-$i.ovpn </button>
 		";
 		}
 		else
 		{
 		echo "
-			<button id=\"btn-fix\" class=\"certs-btn\" onclick=\"window.location.href='download.php?id=$i'\"> download $cfg_name.ovpn </button>
+			<button id=\"btn-fix\" onclick=\"window.location.href='download.php?id=$i'\"> download $cfg_name.ovpn </button>
 		";
 		}
 		if (IS_RENAME)
 		{
-		echo "<button class=\"certs-btn\" onclick=\"window.location.href='rename.php?id=$i'\">rename</button>";
-		}
 		echo "
-		<!--
-		</div>
-		<div class=\"btn-right\">
-			<button onclick=\"window.location.href='rename.php?id=$i'\">rename</button>
-		</div>
-		-->
+    <button id=\"btn-fix\" onclick=\"window.location.href='rename.php?id=$i'\">rename</button>
 		";
+		}
 	}
 	else
 	{

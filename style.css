@@ -1,13 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:300);
 
-.btn-left {
-  float: left;
-}
-
-.btn-right {
-  float: right;
-}
-
 #btn-fix {
   width: 90%;
 }
@@ -20,17 +12,6 @@ button {
   width: 360px;
   padding: 8% 0 0;
   margin: auto;
-}
-.certs-btn {
-    background-color: #4CAF50; /* Green */
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    width: 100%;
 }
 .certs-dl button:hover {
   background: #43A047;
@@ -62,7 +43,7 @@ button {
   box-sizing: border-box;
   font-size: 14px;
 }
-.form button {
+button {
   font-family: "Roboto", sans-serif;
   text-transform: uppercase;
   outline: 0;
@@ -76,7 +57,7 @@ button {
   transition: all 0.3 ease;
   cursor: pointer;
 }
-.form button:hover,.form button:active,.form button:focus {
+button:hover,button:active,button:focus {
   background: #43A047;
 }
 .form .message {
